@@ -28,11 +28,15 @@ jobs:
     - name: Build APK (trigger SDK download)
       run: buildozer android debug || true
 
-    - name: Accept Android SDK licenses
+    - name: Show Buildozer android paths
       run: |
+        ls -la ~/.buildozer/android/platform/
+        find ~/.buildozer/android/platform/ -type d
+
+    - name: Install Android build-tools and accept licenses
+      run: |
+        yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=${HOME}/.buildozer/android/platform/android-sdk "build-tools;36.0.0" || true
         yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
-        yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/bin/sdkmanager --licenses || true
-        yes | ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --licenses || true
 
     - name: Build APK (real)
       run: buildozer android debug
