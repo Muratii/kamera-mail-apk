@@ -27,6 +27,12 @@ jobs:
 
     - name: Build APK (trigger SDK download)
       run: buildozer android debug || true
+    - name: Debug buildozer android sdk paths
+      run: |
+        echo "Dosya listesi:"
+        find ~/.buildozer/android/platform/ -type f
+        echo "Klasör listesi:"
+        find ~/.buildozer/android/platform/ -type d
 
     - name: Show Buildozer android paths
       run: |
