@@ -1,0 +1,3 @@
+# Proje için gerekli Python paketleri
+kivy
+plyer
