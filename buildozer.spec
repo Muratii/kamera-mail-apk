@@ -10,6 +10,9 @@ version = 0.1
 requirements = python3,kivy,plyer
 orientation = portrait
 osx.kivy_version = 2.1.0
+android.sdk_path = $HOME/.buildozer/android/platform/android-sdk
+android.ndk_path = $HOME/.buildozer/android/platform/android-ndk-r25c
+android.accept_sdk_license = True
 
 [buildozer]
 log_level = 2
