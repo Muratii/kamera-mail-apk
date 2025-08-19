@@ -24,7 +24,7 @@ jobs:
           sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip python3-setuptools python3-wheel python3-cffi python3-virtualenv libffi-dev libssl-dev libsqlite3-dev zlib1g-dev libjpeg-dev libfreetype6-dev pkg-config libgl1-mesa-dev libgles2-mesa-dev
 
       - name: Clean old Android SDK tools
-        run: rm -rf $HOME/android-sdk/cmdline-tools
+        run: rm -rf $HOME/android-sdk/cmdline-tools $HOME/android-sdk/tools
 
       - name: Install Buildozer and Cython
         run: |
@@ -40,7 +40,12 @@ jobs:
           rm -rf latest
           mv cmdline-tools latest
           rm tools.zip
-          ls -l $HOME/android-sdk/cmdline-tools/latest/bin
+
+      - name: Legacy tools symlink (for p4a compatibility)
+        run: |
+          mkdir -p $HOME/android-sdk/tools
+          ln -sf $HOME/android-sdk/cmdline-tools/latest/bin $HOME/android-sdk/tools/bin
+          ln -sf $HOME/android-sdk/cmdline-tools/latest/lib $HOME/android-sdk/tools/lib
 
       - name: Accept licenses and install build tools
         run: |
