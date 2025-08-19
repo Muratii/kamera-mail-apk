@@ -1,3 +1,5 @@
+# Kivy ve Plyer ile fotoğraf çekip paylaşmaya hazır örnek uygulama kodu
+
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -9,7 +11,7 @@ class KameraApp(App):
         self.img = Image()
         btn_cek = Button(text="Fotoğraf Çek")
         btn_cek.bind(on_press=self.fotograf_cek)
-        btn_paylas = Button(text="Fotoğrafı Paylaş (Outlook ile Gönder)")
+        btn_paylas = Button(text="Fotoğrafı Paylaş (Mail ile Gönder)")
         btn_paylas.bind(on_press=self.fotograf_paylas)
         self.layout = BoxLayout(orientation='vertical')
         self.layout.add_widget(self.img)
@@ -28,7 +30,7 @@ class KameraApp(App):
 
     def fotograf_paylas(self, instance):
         if self.foto_path:
-            share.share(filepath=self.foto_path, title="Fotoğrafı Outlook ile gönder")
+            share.share(filepath=self.foto_path, title="Fotoğrafı mail ile gönder")
         else:
             print("Önce fotoğraf çekmelisiniz.")
 
